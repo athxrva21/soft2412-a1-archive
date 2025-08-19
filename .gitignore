@@ -1,0 +1,12 @@
+.gradle/
+build/
+.idea/
+*.iml
+.DS_Store
+
+# Compiled output from the Makefile. Never commit build artifacts.
+*.class
+
+# The pinned JUnit jar in lib/ is a dependency, not a build artifact -- it is
+# committed on purpose so `make test` works without network access.
+!lib/

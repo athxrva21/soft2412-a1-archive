@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+}
+
+// Keep this in step with your release tags.
+version = '0.1.0'
+
+// Pin the language level so everyone -- you, your team, and the marker --
+// compiles the same way regardless of which JDK is installed.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    mainClass = 'App'
+}
+
+// Without this, `gradle run` gives the program no standard input and every
+// Scanner read fails or returns nothing.
+run {
+    standardInput = System.in
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    finalizedBy jacocoTestReport
+}
+
+// `gradle test` writes the coverage report to build/reports/jacoco/test/.
+// Open index.html to see which lines your tests do not reach.
+jacocoTestReport {
+    mustRunAfter test
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = true
+    }
+}

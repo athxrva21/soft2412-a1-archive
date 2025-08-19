@@ -1,0 +1,82 @@
+// src/test/java/DataValidatorTest.java
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Tests for DataValidator
+ */
+public class DataValidatorTest {
+
+    private DataValidator validator;
+
+    @BeforeEach
+    public void setUp() {
+        validator = new DataValidator();
+    }
+
+    @Test
+    public void testValidCurrencies() {
+        // TODO: Test that USD, EUR, GBP, AUD are valid
+        assertTrue(validator.isValidCurrency("USD"));
+        assertTrue(validator.isValidCurrency("EUR"));
+        assertTrue(validator.isValidCurrency("GBP"));
+        assertTrue(validator.isValidCurrency("AUD"));
+    }
+
+    @Test
+    public void testInvalidCurrencies() {
+        // TODO: Test that invalid currencies are rejected
+        // The positive case is asserted here too, so this test cannot pass
+        // against a method that simply returns false.
+        assertTrue(validator.isValidCurrency("USD"));
+        assertFalse(validator.isValidCurrency("XYZ"));
+        assertFalse(validator.isValidCurrency(""));
+        assertFalse(validator.isValidCurrency(null));
+        assertFalse(validator.isValidCurrency("INVALID"));
+    }
+
+    @Test
+    public void testValidAmounts() {
+        // TODO: Test that valid amount strings are accepted
+        assertTrue(validator.isValidAmount("100"));
+        assertTrue(validator.isValidAmount("0.01"));
+        assertTrue(validator.isValidAmount("1000.50"));
+    }
+
+    @Test
+    public void testInvalidAmounts() {
+        // TODO: Test that invalid amounts are rejected
+        // The positive case is asserted here too, so this test cannot pass
+        // against a method that simply returns false.
+        assertTrue(validator.isValidAmount("100"));
+        assertFalse(validator.isValidAmount("-100"));
+        assertFalse(validator.isValidAmount("abc"));
+        assertFalse(validator.isValidAmount(""));
+        assertFalse(validator.isValidAmount(null));
+    }
+
+    @Test
+    public void testParseAmount() {
+        // TODO: Test amount parsing
+        assertEquals(100.0, validator.parseAmount("100"), 0.01);
+        assertEquals(50.75, validator.parseAmount("50.75"), 0.01);
+        assertEquals(0.0, validator.parseAmount("invalid"));
+    }
+
+    @Test
+    public void testNormalizeCurrency() {
+        // TODO: Test currency normalization
+        assertEquals("USD", validator.normalizeCurrency("usd"));
+        assertEquals("EUR", validator.normalizeCurrency(" eur "));
+        assertEquals("GBP", validator.normalizeCurrency("Gbp"));
+    }
+
+    @Test
+    public void testCaseInsensitiveCurrency() {
+        // TODO: Test that currency validation is case-insensitive
+        assertTrue(validator.isValidCurrency("usd"));
+        assertTrue(validator.isValidCurrency("EUR"));
+        assertTrue(validator.isValidCurrency("Gbp"));
+    }
+}
