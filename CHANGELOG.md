@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- getExchangeRate(): returns the rate between two currencies from the three fixed USD rates -- Xiaoyang Liu
+
 <!--
 Add one line here for each feature branch, newest at the top, like:
 
