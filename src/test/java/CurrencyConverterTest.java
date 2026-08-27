@@ -44,8 +44,24 @@ public class CurrencyConverterTest {
 
     @Test
     public void testGetExchangeRate() {
-        // TODO: Test getting exchange rate between two currencies
-        fail("Test not implemented yet");
+        // Fixed USD rates from the spec; do not round (rounding is display-only).
+        assertEquals(0.85, converter.getExchangeRate("USD", "EUR"), 1e-12);
+        assertEquals(0.75, converter.getExchangeRate("USD", "GBP"), 1e-12);
+        assertEquals(1.30, converter.getExchangeRate("USD", "AUD"), 1e-12);
+
+        // Same currency is always 1.00
+        assertEquals(1.00, converter.getExchangeRate("USD", "USD"), 1e-12);
+        assertEquals(1.00, converter.getExchangeRate("EUR", "EUR"), 1e-12);
+        assertEquals(1.00, converter.getExchangeRate("GBP", "GBP"), 1e-12);
+        assertEquals(1.00, converter.getExchangeRate("AUD", "AUD"), 1e-12);
+
+        // Derived: X → Y is (USD → Y) / (USD → X). Do not invert a rounded rate.
+        assertEquals(1.0 / 0.85, converter.getExchangeRate("EUR", "USD"), 1e-12);
+        assertEquals(1.0 / 0.75, converter.getExchangeRate("GBP", "USD"), 1e-12);
+        assertEquals(1.0 / 1.30, converter.getExchangeRate("AUD", "USD"), 1e-12);
+        assertEquals(0.75 / 0.85, converter.getExchangeRate("EUR", "GBP"), 1e-12);
+        assertEquals(1.30 / 0.75, converter.getExchangeRate("GBP", "AUD"), 1e-12);
+        assertEquals(0.85 / 1.30, converter.getExchangeRate("AUD", "EUR"), 1e-12);
     }
 
     @Test
