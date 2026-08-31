@@ -3,6 +3,7 @@
 ## Unreleased
 
 - showMenu(): displays the main menu options -- Xiaoyang Liu
+- start(): runs the menu loop and App entry point until Exit is chosen -- Zhengmou Luo
 - testConvertAllCurrencyPairs(): covers all sixteen supported currency pairs and prepares v0.2.1 -- Zhengmou Luo
 - convert(): converts an amount using the requested exchange rate -- zluo8234
 - getExchangeRate(): returns the rate between two currencies from the three fixed USD rates -- Xiaoyang Liu
