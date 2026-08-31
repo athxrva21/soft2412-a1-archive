@@ -1,6 +1,10 @@
 // src/test/java/UserInterfaceTest.java
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -9,6 +13,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserInterfaceTest {
 
     private UserInterface ui;
+
+    private static class StubUserInterface extends UserInterface {
+        private int menuCalls;
+        private int conversionCalls;
+        private int exchangeRateCalls;
+
+        @Override
+        public void showMenu() {
+            menuCalls++;
+        }
+
+        @Override
+        public void handleConversion() {
+            conversionCalls++;
+        }
+
+        @Override
+        public void showExchangeRates() {
+            exchangeRateCalls++;
+        }
+    }
 
     @BeforeEach
     public void setUp() {
@@ -43,8 +68,24 @@ public class UserInterfaceTest {
 
     @Test
     public void testStartMethod() {
-        // TODO: Test that start method exists
-        // Be careful - this might run indefinitely, so test carefully
-        fail("Test not implemented yet");
+        InputStream realIn = System.in;
+        PrintStream realOut = System.out;
+        try {
+            System.setIn(new ByteArrayInputStream("1\n2\n9\n3\n".getBytes()));
+            ByteArrayOutputStream output = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(output));
+
+            StubUserInterface stubUi = new StubUserInterface();
+            stubUi.start();
+
+            assertEquals(4, stubUi.menuCalls);
+            assertEquals(1, stubUi.conversionCalls);
+            assertEquals(1, stubUi.exchangeRateCalls);
+            assertTrue(output.toString().contains("Invalid choice. Enter 1, 2 or 3."));
+            assertTrue(output.toString().contains("Goodbye."));
+        } finally {
+            System.setIn(realIn);
+            System.setOut(realOut);
+        }
     }
 }
