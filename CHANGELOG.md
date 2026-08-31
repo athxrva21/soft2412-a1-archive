@@ -3,6 +3,7 @@
 ## Unreleased
 
 - start(): runs the menu loop and App entry point until Exit is chosen -- Zhengmou Luo
+- parseAmount(): converts an amount string to a double, or 0.0 if it is not a usable number -- Atharva
 - testConvertAllCurrencyPairs(): covers all sixteen supported currency pairs and prepares v0.2.1 -- Zhengmou Luo
 - showExchangeRates(): prints the full rate table for all currency pairs -- amuk0434
 - getExchangeRate(): returns the rate between two currencies from the three fixed USD rates -- Xiaoyang Liu

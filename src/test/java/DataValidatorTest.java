@@ -58,10 +58,43 @@ public class DataValidatorTest {
 
     @Test
     public void testParseAmount() {
-        // TODO: Test amount parsing
+        // Whole numbers and decimals both parse.
         assertEquals(100.0, validator.parseAmount("100"), 0.01);
         assertEquals(50.75, validator.parseAmount("50.75"), 0.01);
+
+        // A string that is not a number gives 0.0 instead of throwing.
         assertEquals(0.0, validator.parseAmount("invalid"));
+    }
+
+    @Test
+    public void testParseAmountRejectsUnusableInput() {
+        // Double.parseDouble(null) throws NullPointerException, not
+        // NumberFormatException, so null has to be handled before the parse.
+        assertEquals(0.0, validator.parseAmount(null));
+
+        // Empty and whitespace-only strings are not numbers.
+        assertEquals(0.0, validator.parseAmount(""));
+        assertEquals(0.0, validator.parseAmount("   "));
+
+        // These parse successfully but are not usable amounts; returning one
+        // would carry it through the conversion and print it as the result.
+        assertEquals(0.0, validator.parseAmount("NaN"));
+        assertEquals(0.0, validator.parseAmount("Infinity"));
+        assertEquals(0.0, validator.parseAmount("-Infinity"));
+    }
+
+    @Test
+    public void testParseAmountConvertsWithoutJudging() {
+        // Surrounding whitespace is trimmed, as a value typed at the menu
+        // can carry it.
+        assertEquals(100.0, validator.parseAmount("  100  "), 0.01);
+
+        // parseAmount only converts; whether an amount is positive is decided
+        // by isValidAmount, so a negative string still parses to its value.
+        assertEquals(-5.0, validator.parseAmount("-5"), 0.01);
+
+        // Zero is a number, and is returned as one.
+        assertEquals(0.0, validator.parseAmount("0"), 0.01);
     }
 
     @Test
