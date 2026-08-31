@@ -1,12 +1,10 @@
 // src/test/java/UserInterfaceTest.java
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -50,9 +48,19 @@ public class UserInterfaceTest {
 
     @Test
     public void testShowMenu() {
-        // TODO: Test that showMenu method exists and runs
-        // You might capture System.out to test menu display
-        fail("Test not implemented yet");
+        PrintStream realOut = System.out;
+        ByteArrayOutputStream captured = new ByteArrayOutputStream();
+        try {
+            System.setOut(new PrintStream(captured));
+            ui.showMenu();
+        } finally {
+            System.setOut(realOut);
+        }
+        String out = captured.toString();
+        assertTrue(out.contains("=== Currency Converter ==="));
+        assertTrue(out.contains("1. Convert Currency"));
+        assertTrue(out.contains("2. View Exchange Rates"));
+        assertTrue(out.contains("3. Exit"));
     }
 
     @Test
