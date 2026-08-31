@@ -48,6 +48,10 @@ public class UserInterface {
                     System.out.println("Invalid choice. Enter 1, 2 or 3.");
                     break;
             }
+
+            if (running) {
+                System.out.println();
+            }
         }
     }
 

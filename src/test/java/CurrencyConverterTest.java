@@ -90,6 +90,10 @@ public class CurrencyConverterTest {
         assertEquals(0.75 / 0.85, converter.getExchangeRate("EUR", "GBP"), 1e-12);
         assertEquals(1.30 / 0.75, converter.getExchangeRate("GBP", "AUD"), 1e-12);
         assertEquals(0.85 / 1.30, converter.getExchangeRate("AUD", "EUR"), 1e-12);
+
+        // Unsupported codes hit usdTo's default. The UI never asks for a rate
+        // of an invalid code, but the line must still run for full coverage.
+        assertEquals(0.0, converter.getExchangeRate("USD", "XXX"), 1e-12);
     }
 
     @Test
