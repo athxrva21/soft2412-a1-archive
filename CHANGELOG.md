@@ -4,6 +4,8 @@
 
 - getSupportedCurrencies(): returns the four supported currency codes in display order -- Atharva
 
+- convert(): converts an amount using the requested exchange rate -- zluo8234
+
 <!--
 Add one line here for each feature branch, newest at the top, like:
 
