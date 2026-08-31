@@ -45,26 +45,28 @@ Four members. Each takes one row of the handout table (three methods, three feat
 
 ## Contributions
 
-### Zhengmou Luo (`zluo8234`)
+------------
+name: Zhengmou Luo
+unikey: zluo8234
+What I did:
+Implemented convert (CurrencyConverter), start plus the App entry point (UserInterface) and isValidCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: f2535ee (convert), ab1f244 (start) and 303c1b3 (isValidCurrency).
 
-Implemented `convert` (CurrencyConverter), `start` plus the App entry point (UserInterface) and `isValidCurrency` (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
+------------
+name: Xiaoyang Liu
+unikey: xliu0704
+What I did:
+Implemented getExchangeRate (CurrencyConverter), showMenu (UserInterface) and isValidAmount (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: 1fc447e (getExchangeRate), 9f77c99 (showMenu) and 3757b8b (isValidAmount).
 
-Integration merge commits: `f2535ee` (`convert`), `ab1f244` (`start`) and `303c1b3` (`isValidCurrency`).
+------------
+name: Atharva Aher
+unikey: aahe0438
+What I did:
+Implemented getSupportedCurrencies (CurrencyConverter), handleConversion (UserInterface) and parseAmount (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: 6553ec3 (getSupportedCurrencies), 02d7929 (parseAmount) and 4ecef36 (handleConversion).
 
-### Xiaoyang Liu (`xliu0704`)
+------------
+name: Aditya Mukherjee
+unikey: amuk0434
+What I did:
+Implemented roundToTwoDecimals (CurrencyConverter), showExchangeRates (UserInterface) and normalizeCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: 5b7b56f (roundToTwoDecimals), 8f85bdf (showExchangeRates) and a9ea2ee (normalizeCurrency).
 
-Implemented `getExchangeRate` (CurrencyConverter), `showMenu` (UserInterface) and `isValidAmount` (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
-
-Integration merge commits: `1fc447e` (`getExchangeRate`), `9f77c99` (`showMenu`) and `3757b8b` (`isValidAmount`).
-
-### Atharva Aher (`aahe0438`)
-
-Implemented `getSupportedCurrencies` (CurrencyConverter), `handleConversion` (UserInterface) and `parseAmount` (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
-
-Integration merge commits: `6553ec3` (`getSupportedCurrencies`), `02d7929` (`parseAmount`) and `4ecef36` (`handleConversion`).
-
-### Aditya Mukherjee (`amuk0434`)
-
-Implemented `roundToTwoDecimals` (CurrencyConverter), `showExchangeRates` (UserInterface) and `normalizeCurrency` (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
-
-Integration merge commits: `5b7b56f` (`roundToTwoDecimals`), `8f85bdf` (`showExchangeRates`) and `a9ea2ee` (`normalizeCurrency`).
+------------

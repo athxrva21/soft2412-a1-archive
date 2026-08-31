@@ -33,6 +33,7 @@ public class UserInterface {
             System.out.print("Enter choice: ");
 
             String choice = scanner.nextLine().trim();
+            System.out.println();
             switch (choice) {
                 case "1":
                     handleConversion();
