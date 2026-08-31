@@ -61,6 +61,22 @@ public class UserInterface {
      * Display exchange rates table
      */
     public void showExchangeRates() {
-        // TODO: Display formatted table of exchange rates
+        String[] currencies = converter.getSupportedCurrencies();
+        System.out.println("Exchange Rates (base = 1 unit)");
+
+        StringBuilder header = new StringBuilder();
+        for (String currency : currencies) {
+            header.append("\t").append(currency);
+        }
+        System.out.println(header.toString());
+
+        for (String from : currencies) {
+            StringBuilder row = new StringBuilder(from);
+            for (String to : currencies) {
+                double rate = converter.getExchangeRate(from, to);
+                row.append("\t").append(String.format("%.2f", rate));
+            }
+            System.out.println(row.toString());
+        }
     }
 }
