@@ -11,8 +11,15 @@ public class DataValidator {
      * @return true if valid (USD/EUR/GBP/AUD)
      */
     public boolean isValidCurrency(String currency) {
-        // TODO: Validate currency is one of: USD, EUR, GBP, AUD
-        return false; // Replace with validation logic
+        if (currency == null) {
+            return false;
+        }
+
+        String normalizedCurrency = currency.trim();
+        return normalizedCurrency.equalsIgnoreCase("USD")
+            || normalizedCurrency.equalsIgnoreCase("EUR")
+            || normalizedCurrency.equalsIgnoreCase("GBP")
+            || normalizedCurrency.equalsIgnoreCase("AUD");
     }
 
     /**
