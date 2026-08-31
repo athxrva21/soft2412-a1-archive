@@ -37,9 +37,22 @@ public class CurrencyConverterTest {
 
     @Test
     public void testGetSupportedCurrencies() {
-        // TODO: Test that getSupportedCurrencies returns correct array
-        // Should contain ["USD", "EUR", "GBP", "AUD"]
-        fail("Test not implemented yet");
+        String[] currencies = converter.getSupportedCurrencies();
+
+        // Exactly the four currencies the specification lists, in the order
+        // the exchange-rate table displays them. assertArrayEquals checks the
+        // order as well as the contents, which assertTrue(contains) would not.
+        assertArrayEquals(new String[]{"USD", "EUR", "GBP", "AUD"}, currencies);
+    }
+
+    @Test
+    public void testGetSupportedCurrenciesReturnsACopy() {
+        // Overwriting the returned array must not change the supported set,
+        // otherwise one caller could break the converter for every other one.
+        String[] first = converter.getSupportedCurrencies();
+        first[0] = "XXX";
+
+        assertEquals("USD", converter.getSupportedCurrencies()[0]);
     }
 
     @Test

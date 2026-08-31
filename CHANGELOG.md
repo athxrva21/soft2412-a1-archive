@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- getSupportedCurrencies(): returns the four supported currency codes in display order -- Atharva
+
 <!--
 Add one line here for each feature branch, newest at the top, like:
 
