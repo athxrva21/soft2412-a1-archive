@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- isValidCurrency(): accepts supported codes regardless of case or surrounding whitespace -- Zhengmou Luo
 - normalizeCurrency(): trims and uppercases a currency code, null-safe -- amuk0434
 - showMenu(): displays the main menu options -- Xiaoyang Liu
 - start(): runs the menu loop and App entry point until Exit is chosen -- Zhengmou Luo

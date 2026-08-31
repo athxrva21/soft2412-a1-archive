@@ -4,7 +4,7 @@
 
 | Member | Unikey | Methods implemented |
 | --- | --- | --- |
-| 1 Zhengmou Luo | | `convert`, `start`, `isValidCurrency` |
+| 1 Zhengmou Luo | zluo8234 | `convert`, `start`, `isValidCurrency` |
 | 2 Xiaoyang Liu | xliu0704 | `getExchangeRate`, `showMenu`, `isValidAmount` |
 | 3 Atharva Aher | | `getSupportedCurrencies`, `handleConversion`, `parseAmount` |
 | 4 Aditya Mukherjee | amuk0434 | `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency` |

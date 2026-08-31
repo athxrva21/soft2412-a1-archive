@@ -17,9 +17,7 @@ public class DataValidatorTest {
     }
 
     @Test
-    @Disabled("isValidCurrency is a cycle 3 method")
     public void testValidCurrencies() {
-        // TODO: Test that USD, EUR, GBP, AUD are valid
         assertTrue(validator.isValidCurrency("USD"));
         assertTrue(validator.isValidCurrency("EUR"));
         assertTrue(validator.isValidCurrency("GBP"));
@@ -27,14 +25,11 @@ public class DataValidatorTest {
     }
 
     @Test
-    @Disabled("isValidCurrency is a cycle 3 method")
     public void testInvalidCurrencies() {
-        // TODO: Test that invalid currencies are rejected
-        // The positive case is asserted here too, so this test cannot pass
-        // against a method that simply returns false.
         assertTrue(validator.isValidCurrency("USD"));
         assertFalse(validator.isValidCurrency("XYZ"));
         assertFalse(validator.isValidCurrency(""));
+        assertFalse(validator.isValidCurrency("   "));
         assertFalse(validator.isValidCurrency(null));
         assertFalse(validator.isValidCurrency("INVALID"));
     }
@@ -112,11 +107,10 @@ public class DataValidatorTest {
     }
 
     @Test
-    @Disabled("isValidCurrency is a cycle 3 method")
     public void testCaseInsensitiveCurrency() {
-        // TODO: Test that currency validation is case-insensitive
         assertTrue(validator.isValidCurrency("usd"));
         assertTrue(validator.isValidCurrency("EUR"));
         assertTrue(validator.isValidCurrency("Gbp"));
+        assertTrue(validator.isValidCurrency("  Aud  "));
     }
 }
