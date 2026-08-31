@@ -63,14 +63,54 @@ public class UserInterface {
     }
 
     /**
-     * Handle currency conversion process
+     * Guide the user through one conversion: read an amount, read the two
+     * currency codes, and print the result.
+     *
+     * <p>The order in which input is validated is specified behaviour, not an
+     * implementation detail:
+     *
+     * <ul>
+     *   <li>the amount is checked as soon as it is read, so an invalid amount
+     *       returns to the menu without asking for currencies at all;</li>
+     *   <li>both currency codes are read before either is checked, so an
+     *       invalid "from" code still prompts for the "to" code before the
+     *       error appears.</li>
+     * </ul>
+     *
+     * <p>Codes are normalized before being validated, so "usd", "USD" and
+     * " Usd " are the same currency, and the normalized form is what appears
+     * in the result line. Rounding happens only here, at display time.
+     *
+     * <p>No blank line is printed before or after this output. The blank lines
+     * that separate an operation from the menu belong to {@link #start()},
+     * which is the only place that knows a menu choice has just been read.
      */
     public void handleConversion() {
-        // TODO: Guide user through conversion:
-        // 1. Get amount
-        // 2. Get source currency
-        // 3. Get target currency
-        // 4. Show result
+        System.out.print("Enter amount: ");
+        String amountInput = scanner.nextLine();
+
+        if (!validator.isValidAmount(amountInput)) {
+            System.out.println("Invalid amount. Enter a positive number.");
+            return;
+        }
+
+        System.out.print("From currency (USD/EUR/GBP/AUD): ");
+        String fromInput = scanner.nextLine();
+        System.out.print("To currency (USD/EUR/GBP/AUD): ");
+        String toInput = scanner.nextLine();
+
+        String from = validator.normalizeCurrency(fromInput);
+        String to = validator.normalizeCurrency(toInput);
+
+        if (!validator.isValidCurrency(from) || !validator.isValidCurrency(to)) {
+            System.out.println("Invalid currency. Use USD, EUR, GBP or AUD.");
+            return;
+        }
+
+        double amount = validator.parseAmount(amountInput);
+        double converted = converter.convert(amount, from, to);
+
+        System.out.printf("Result: %.2f %s = %.2f %s%n", amount, from, converted, to);
     }
 
     /**
