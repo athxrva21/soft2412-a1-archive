@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- isValidCurrency(): accepts supported codes regardless of case or surrounding whitespace -- Zhengmou Luo
 - showMenu(): displays the main menu options -- Xiaoyang Liu
 - start(): runs the menu loop and App entry point until Exit is chosen -- Zhengmou Luo
 - parseAmount(): converts an amount string to a double, or 0.0 if it is not a usable number -- Atharva
