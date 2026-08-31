@@ -103,12 +103,12 @@ public class DataValidatorTest {
     }
 
     @Test
-    @Disabled("normalizeCurrency is a cycle 3 method")
     public void testNormalizeCurrency() {
-        // TODO: Test currency normalization
         assertEquals("USD", validator.normalizeCurrency("usd"));
         assertEquals("EUR", validator.normalizeCurrency(" eur "));
         assertEquals("GBP", validator.normalizeCurrency("Gbp"));
+        assertEquals("AUD", validator.normalizeCurrency("  AUD  "));
+        assertNull(validator.normalizeCurrency(null));
     }
 
     @Test
