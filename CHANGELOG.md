@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- isValidAmount(): accepts only strings that parse as a number greater than zero -- Xiaoyang Liu
 - showMenu(): displays the main menu options -- Xiaoyang Liu
 - start(): runs the menu loop and App entry point until Exit is chosen -- Zhengmou Luo
 - parseAmount(): converts an amount string to a double, or 0.0 if it is not a usable number -- Atharva
