@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- roundToTwoDecimals(): rounds a value to two decimal places (HALF_UP) -- amuk0434
+
 <!--
 Add one line here for each feature branch, newest at the top, like:
 
