@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- isValidAmount(): accepts only strings that parse as a number greater than zero -- Xiaoyang Liu
 - isValidCurrency(): accepts supported codes regardless of case or surrounding whitespace -- Zhengmou Luo
 - handleConversion(): prompts for an amount and two currencies, validates them and prints the result -- Atharva
 - README: reformat contributions into the required per-student sections -- amuk0434

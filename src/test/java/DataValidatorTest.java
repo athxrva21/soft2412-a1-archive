@@ -1,6 +1,5 @@
 // src/test/java/DataValidatorTest.java
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,25 +34,24 @@ public class DataValidatorTest {
     }
 
     @Test
-    @Disabled("isValidAmount is a cycle 3 method")
     public void testValidAmounts() {
-        // TODO: Test that valid amount strings are accepted
         assertTrue(validator.isValidAmount("100"));
         assertTrue(validator.isValidAmount("0.01"));
         assertTrue(validator.isValidAmount("1000.50"));
+        assertTrue(validator.isValidAmount("  100  "));
     }
 
     @Test
-    @Disabled("isValidAmount is a cycle 3 method")
     public void testInvalidAmounts() {
-        // TODO: Test that invalid amounts are rejected
-        // The positive case is asserted here too, so this test cannot pass
-        // against a method that simply returns false.
         assertTrue(validator.isValidAmount("100"));
         assertFalse(validator.isValidAmount("-100"));
         assertFalse(validator.isValidAmount("abc"));
         assertFalse(validator.isValidAmount(""));
         assertFalse(validator.isValidAmount(null));
+        assertFalse(validator.isValidAmount("0"));
+        assertFalse(validator.isValidAmount("   "));
+        assertFalse(validator.isValidAmount("NaN"));
+        assertFalse(validator.isValidAmount("Infinity"));
     }
 
     @Test

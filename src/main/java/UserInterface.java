@@ -29,7 +29,6 @@ public class UserInterface {
         boolean running = true;
 
         while (running) {
-            System.out.println("=== Currency Converter ===");
             showMenu();
             System.out.print("Enter choice: ");
 
