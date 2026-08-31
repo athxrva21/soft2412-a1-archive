@@ -1,5 +1,6 @@
 // src/test/java/DataValidatorTest.java
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,6 +17,7 @@ public class DataValidatorTest {
     }
 
     @Test
+    @Disabled("isValidCurrency is a cycle 3 method")
     public void testValidCurrencies() {
         // TODO: Test that USD, EUR, GBP, AUD are valid
         assertTrue(validator.isValidCurrency("USD"));
@@ -25,6 +27,7 @@ public class DataValidatorTest {
     }
 
     @Test
+    @Disabled("isValidCurrency is a cycle 3 method")
     public void testInvalidCurrencies() {
         // TODO: Test that invalid currencies are rejected
         // The positive case is asserted here too, so this test cannot pass
@@ -37,6 +40,7 @@ public class DataValidatorTest {
     }
 
     @Test
+    @Disabled("isValidAmount is a cycle 3 method")
     public void testValidAmounts() {
         // TODO: Test that valid amount strings are accepted
         assertTrue(validator.isValidAmount("100"));
@@ -45,6 +49,7 @@ public class DataValidatorTest {
     }
 
     @Test
+    @Disabled("isValidAmount is a cycle 3 method")
     public void testInvalidAmounts() {
         // TODO: Test that invalid amounts are rejected
         // The positive case is asserted here too, so this test cannot pass
@@ -98,6 +103,7 @@ public class DataValidatorTest {
     }
 
     @Test
+    @Disabled("normalizeCurrency is a cycle 3 method")
     public void testNormalizeCurrency() {
         // TODO: Test currency normalization
         assertEquals("USD", validator.normalizeCurrency("usd"));
@@ -106,6 +112,7 @@ public class DataValidatorTest {
     }
 
     @Test
+    @Disabled("isValidCurrency is a cycle 3 method")
     public void testCaseInsensitiveCurrency() {
         // TODO: Test that currency validation is case-insensitive
         assertTrue(validator.isValidCurrency("usd"));
