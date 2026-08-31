@@ -94,8 +94,23 @@ public class CurrencyConverterTest {
 
     @Test
     public void testConvertAllCurrencyPairs() {
-        // TODO: Test conversion between all supported currency pairs
-        fail("Test not implemented yet");
+        String[] currencies = {"USD", "EUR", "GBP", "AUD"};
+        double[] usdRates = {1.0, 0.85, 0.75, 1.30};
+        double amount = 100.0;
+
+        for (int from = 0; from < currencies.length; from++) {
+            for (int to = 0; to < currencies.length; to++) {
+                double expectedRate = usdRates[to] / usdRates[from];
+                double expectedAmount = amount * expectedRate;
+
+                assertEquals(
+                    expectedAmount,
+                    converter.convert(amount, currencies[from], currencies[to]),
+                    1e-12,
+                    currencies[from] + " to " + currencies[to]
+                );
+            }
+        }
     }
 
     @Test
