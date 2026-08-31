@@ -67,7 +67,9 @@ public class DataValidator {
      * @return normalized currency code
      */
     public String normalizeCurrency(String currency) {
-        // TODO: Clean up currency input (trim, uppercase)
-        return currency; // Replace with normalization
+        if (currency == null) {
+            return null;
+        }
+        return currency.trim().toUpperCase();
     }
 }

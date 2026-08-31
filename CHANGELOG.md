@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- normalizeCurrency(): trims and uppercases a currency code, null-safe -- amuk0434
 - showMenu(): displays the main menu options -- Xiaoyang Liu
 - start(): runs the menu loop and App entry point until Exit is chosen -- Zhengmou Luo
 - parseAmount(): converts an amount string to a double, or 0.0 if it is not a usable number -- Atharva
