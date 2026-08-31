@@ -40,10 +40,10 @@ public class UserInterface {
      * Display main menu options
      */
     public void showMenu() {
-        // TODO: Display menu:
-        // 1. Convert Currency
-        // 2. View Exchange Rates
-        // 3. Exit
+        System.out.println("=== Currency Converter ===");
+        System.out.println("1. Convert Currency");
+        System.out.println("2. View Exchange Rates");
+        System.out.println("3. Exit");
     }
 
     /**
