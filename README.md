@@ -48,6 +48,7 @@ name: Zhengmou Luo
 unikey: zluo8234
 What I did:
 Implemented convert (CurrencyConverter), start plus the App entry point (UserInterface) and isValidCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
+Integration merge commits: `f2535ee` (`convert`), `ab1f244` (`start`) and `303c1b3` (`isValidCurrency`).
 ------------
 name: Xiaoyang Liu
 unikey: xliu0704
