@@ -41,8 +41,26 @@ Four members. Each takes one row of the handout table (three methods, three feat
 | 2 | v0.3.0 | start (+ App.java) | showMenu | handleConversion | showExchangeRates |
 | 3 | v1.0.0 | isValidCurrency | isValidAmount | parseAmount | normalizeCurrency |
 
-## What I personally implemented
+## Contributions
 
-Xiaoyang Liu (`xliu0704`): `getExchangeRate`, `showMenu`, `isValidAmount`.
-
-Aditya Mukherjee (`amuk0434`): `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency`.
+------------
+name: Zhengmou Luo
+unikey: zluo8234
+What I did:
+Implemented convert (CurrencyConverter), start plus the App entry point (UserInterface) and isValidCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
+------------
+name: Xiaoyang Liu
+unikey: xliu0704
+What I did:
+Implemented getExchangeRate (CurrencyConverter), showMenu (UserInterface) and isValidAmount (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
+------------
+name: Atharva Aher
+unikey: aahe0438
+What I did:
+Implemented getSupportedCurrencies (CurrencyConverter), handleConversion (UserInterface) and parseAmount (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
+------------
+name: Aditya Mukherjee
+unikey: amuk0434
+What I did:
+Implemented roundToTwoDecimals (CurrencyConverter), showExchangeRates (UserInterface) and normalizeCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry.
+------------
