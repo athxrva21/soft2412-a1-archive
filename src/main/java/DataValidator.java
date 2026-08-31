@@ -21,8 +21,7 @@ public class DataValidator {
      * @return true if valid positive number
      */
     public boolean isValidAmount(String amountStr) {
-        // TODO: Check if string represents positive number
-        return false; // Replace with validation logic
+        return parseAmount(amountStr) > 0.0;
     }
 
     /**
