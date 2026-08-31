@@ -66,4 +66,21 @@ public class CurrencyConverterTest {
         // TODO: Test conversion between all supported currency pairs
         fail("Test not implemented yet");
     }
+
+    @Test
+    public void testRoundToTwoDecimalsRoundsDown() {
+        assertEquals(1.23, converter.roundToTwoDecimals(1.234), 1e-9);
+    }
+
+    @Test
+    public void testRoundToTwoDecimalsRoundsHalfUp() {
+        assertEquals(1.01, converter.roundToTwoDecimals(1.005), 1e-9);
+        assertEquals(2.69, converter.roundToTwoDecimals(2.685), 1e-9);
+    }
+
+    @Test
+    public void testRoundToTwoDecimalsLeavesShortValues() {
+        assertEquals(67.0, converter.roundToTwoDecimals(67.0), 1e-9);
+        assertEquals(100.0, converter.roundToTwoDecimals(100), 1e-9);
+    }
 }

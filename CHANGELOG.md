@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- roundToTwoDecimals(): rounds a value to two decimal places (HALF_UP) -- amuk0434
 - getSupportedCurrencies(): returns the four supported currency codes in display order -- Atharva
 
 <!--

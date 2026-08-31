@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Core currency conversion logic
  *
@@ -72,7 +75,6 @@ public class CurrencyConverter {
      * @return rounded value
      */
     public double roundToTwoDecimals(double value) {
-        // TODO: Round the value to two decimal places
-        return 0.0; // Replace with actual rounding
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }
