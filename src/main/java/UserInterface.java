@@ -26,14 +26,30 @@ public class UserInterface {
      * Start the main application loop
      */
     public void start() {
-        // TODO: Implement main menu loop
-        // 1. Show menu
-        // 2. Get user choice
-        // 3. Handle choice
-        // 4. Repeat until exit
+        boolean running = true;
 
-        System.out.println("=== Currency Converter ===");
-        // TODO: Implement menu loop
+        while (running) {
+            System.out.println("=== Currency Converter ===");
+            showMenu();
+            System.out.print("Enter choice: ");
+
+            String choice = scanner.nextLine().trim();
+            switch (choice) {
+                case "1":
+                    handleConversion();
+                    break;
+                case "2":
+                    showExchangeRates();
+                    break;
+                case "3":
+                    System.out.println("Goodbye.");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Enter 1, 2 or 3.");
+                    break;
+            }
+        }
     }
 
     /**
