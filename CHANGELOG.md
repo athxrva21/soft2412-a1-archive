@@ -3,6 +3,8 @@
 ## Unreleased
 
 - showMenu(): displays the main menu options -- Xiaoyang Liu
+- testConvertAllCurrencyPairs(): covers all sixteen supported currency pairs and prepares v0.2.1 -- Zhengmou Luo
+- convert(): converts an amount using the requested exchange rate -- zluo8234
 - getExchangeRate(): returns the rate between two currencies from the three fixed USD rates -- Xiaoyang Liu
 - roundToTwoDecimals(): rounds a value to two decimal places (HALF_UP) -- amuk0434
 - getSupportedCurrencies(): returns the four supported currency codes in display order -- Atharva

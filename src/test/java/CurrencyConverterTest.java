@@ -11,6 +11,19 @@ public class CurrencyConverterTest {
 
     private CurrencyConverter converter;
 
+    private static class StubCurrencyConverter extends CurrencyConverter {
+        private final double exchangeRate;
+
+        StubCurrencyConverter(double exchangeRate) {
+            this.exchangeRate = exchangeRate;
+        }
+
+        @Override
+        public double getExchangeRate(String fromCurrency, String toCurrency) {
+            return exchangeRate;
+        }
+    }
+
     @BeforeEach
     public void setUp() {
         converter = new CurrencyConverter();
@@ -18,21 +31,23 @@ public class CurrencyConverterTest {
 
     @Test
     public void testConvertUSDToEUR() {
-        // TODO: Test converting 100 USD to EUR
-        // Should return approximately 85.0 if rate is 0.85
-        fail("Test not implemented yet");
+        converter = new StubCurrencyConverter(0.85);
+
+        assertEquals(85.0, converter.convert(100.0, "USD", "EUR"), 0.000001);
     }
 
     @Test
     public void testConvertSameCurrency() {
-        // TODO: Test converting USD to USD should return same amount
-        fail("Test not implemented yet");
+        converter = new StubCurrencyConverter(1.0);
+
+        assertEquals(42.5, converter.convert(42.5, "USD", "USD"), 0.000001);
     }
 
     @Test
     public void testConvertZeroAmount() {
-        // TODO: Test converting 0 amount
-        fail("Test not implemented yet");
+        converter = new StubCurrencyConverter(0.85);
+
+        assertEquals(0.0, converter.convert(0.0, "USD", "EUR"), 0.000001);
     }
 
     @Test
@@ -79,8 +94,23 @@ public class CurrencyConverterTest {
 
     @Test
     public void testConvertAllCurrencyPairs() {
-        // TODO: Test conversion between all supported currency pairs
-        fail("Test not implemented yet");
+        String[] currencies = {"USD", "EUR", "GBP", "AUD"};
+        double[] usdRates = {1.0, 0.85, 0.75, 1.30};
+        double amount = 100.0;
+
+        for (int from = 0; from < currencies.length; from++) {
+            for (int to = 0; to < currencies.length; to++) {
+                double expectedRate = usdRates[to] / usdRates[from];
+                double expectedAmount = amount * expectedRate;
+
+                assertEquals(
+                    expectedAmount,
+                    converter.convert(amount, currencies[from], currencies[to]),
+                    1e-12,
+                    currencies[from] + " to " + currencies[to]
+                );
+            }
+        }
     }
 
     @Test
