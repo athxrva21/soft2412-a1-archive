@@ -4,12 +4,12 @@
 
 | Member | Unikey | Methods implemented |
 | --- | --- | --- |
-| | | |
-| | | |
-| | | |
-| | | |
+| 1 Zhengmou Luo | | `convert`, `start`, `isValidCurrency` |
+| 2 Xiaoyang Liu | xliu0704 | `getExchangeRate`, `showMenu`, `isValidAmount` |
+| 3 Atharva Aher | | `getSupportedCurrencies`, `handleConversion`, `parseAmount` |
+| 4 Aditya Mukherjee | | `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency` |
 
-Integration-manager repository: <paste the URL here>
+Integration-manager repository: https://github.sydney.edu.au/SOFT2412-COMP9412-2026s2/A1-T05-60-IM.git
 
 ## Quick Start
 
@@ -33,8 +33,14 @@ make clean
 
 ## How the work was divided
 
-<!-- Which row of the Section 7.1 table each member took. -->
+Four members. Each takes one row of the handout table (three methods, three feature branches). Hong is not on this assignment.
+
+| Cycle | Tag | Member 1 Zhengmou | Member 2 Xiaoyang | Member 3 Atharva | Member 4 Aditya |
+| --- | --- | --- | --- | --- | --- |
+| 1 | v0.2.0 | convert | getExchangeRate | getSupportedCurrencies | roundToTwoDecimals |
+| 2 | v0.3.0 | start (+ App.java) | showMenu | handleConversion | showExchangeRates |
+| 3 | v1.0.0 | isValidCurrency | isValidAmount | parseAmount | normalizeCurrency |
 
 ## What I personally implemented
 
-<!-- Your own methods, and the merge commits you made. -->
+Xiaoyang Liu (`xliu0704`): `getExchangeRate`, `showMenu`, `isValidAmount`.
