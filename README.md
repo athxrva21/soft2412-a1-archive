@@ -7,7 +7,7 @@
 | 1 Zhengmou Luo | | `convert`, `start`, `isValidCurrency` |
 | 2 Xiaoyang Liu | xliu0704 | `getExchangeRate`, `showMenu`, `isValidAmount` |
 | 3 Atharva Aher | | `getSupportedCurrencies`, `handleConversion`, `parseAmount` |
-| 4 Aditya Mukherjee | | `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency` |
+| 4 Aditya Mukherjee | amuk0434 | `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency` |
 
 Integration-manager repository: https://github.sydney.edu.au/SOFT2412-COMP9412-2026s2/A1-T05-60-IM.git
 
@@ -44,3 +44,5 @@ Four members. Each takes one row of the handout table (three methods, three feat
 ## What I personally implemented
 
 Xiaoyang Liu (`xliu0704`): `getExchangeRate`, `showMenu`, `isValidAmount`.
+
+Aditya Mukherjee (`amuk0434`): `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency`.
