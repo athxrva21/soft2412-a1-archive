@@ -11,6 +11,19 @@ public class CurrencyConverterTest {
 
     private CurrencyConverter converter;
 
+    private static class StubCurrencyConverter extends CurrencyConverter {
+        private final double exchangeRate;
+
+        StubCurrencyConverter(double exchangeRate) {
+            this.exchangeRate = exchangeRate;
+        }
+
+        @Override
+        public double getExchangeRate(String fromCurrency, String toCurrency) {
+            return exchangeRate;
+        }
+    }
+
     @BeforeEach
     public void setUp() {
         converter = new CurrencyConverter();
@@ -18,21 +31,23 @@ public class CurrencyConverterTest {
 
     @Test
     public void testConvertUSDToEUR() {
-        // TODO: Test converting 100 USD to EUR
-        // Should return approximately 85.0 if rate is 0.85
-        fail("Test not implemented yet");
+        converter = new StubCurrencyConverter(0.85);
+
+        assertEquals(85.0, converter.convert(100.0, "USD", "EUR"), 0.000001);
     }
 
     @Test
     public void testConvertSameCurrency() {
-        // TODO: Test converting USD to USD should return same amount
-        fail("Test not implemented yet");
+        converter = new StubCurrencyConverter(1.0);
+
+        assertEquals(42.5, converter.convert(42.5, "USD", "USD"), 0.000001);
     }
 
     @Test
     public void testConvertZeroAmount() {
-        // TODO: Test converting 0 amount
-        fail("Test not implemented yet");
+        converter = new StubCurrencyConverter(0.85);
+
+        assertEquals(0.0, converter.convert(0.0, "USD", "EUR"), 0.000001);
     }
 
     @Test
@@ -57,13 +72,65 @@ public class CurrencyConverterTest {
 
     @Test
     public void testGetExchangeRate() {
-        // TODO: Test getting exchange rate between two currencies
-        fail("Test not implemented yet");
+        // Fixed USD rates from the spec; do not round (rounding is display-only).
+        assertEquals(0.85, converter.getExchangeRate("USD", "EUR"), 1e-12);
+        assertEquals(0.75, converter.getExchangeRate("USD", "GBP"), 1e-12);
+        assertEquals(1.30, converter.getExchangeRate("USD", "AUD"), 1e-12);
+
+        // Same currency is always 1.00
+        assertEquals(1.00, converter.getExchangeRate("USD", "USD"), 1e-12);
+        assertEquals(1.00, converter.getExchangeRate("EUR", "EUR"), 1e-12);
+        assertEquals(1.00, converter.getExchangeRate("GBP", "GBP"), 1e-12);
+        assertEquals(1.00, converter.getExchangeRate("AUD", "AUD"), 1e-12);
+
+        // Derived: X → Y is (USD → Y) / (USD → X). Do not invert a rounded rate.
+        assertEquals(1.0 / 0.85, converter.getExchangeRate("EUR", "USD"), 1e-12);
+        assertEquals(1.0 / 0.75, converter.getExchangeRate("GBP", "USD"), 1e-12);
+        assertEquals(1.0 / 1.30, converter.getExchangeRate("AUD", "USD"), 1e-12);
+        assertEquals(0.75 / 0.85, converter.getExchangeRate("EUR", "GBP"), 1e-12);
+        assertEquals(1.30 / 0.75, converter.getExchangeRate("GBP", "AUD"), 1e-12);
+        assertEquals(0.85 / 1.30, converter.getExchangeRate("AUD", "EUR"), 1e-12);
+
+        // Unsupported codes hit usdTo's default. The UI never asks for a rate
+        // of an invalid code, but the line must still run for full coverage.
+        assertEquals(0.0, converter.getExchangeRate("USD", "XXX"), 1e-12);
     }
 
     @Test
     public void testConvertAllCurrencyPairs() {
-        // TODO: Test conversion between all supported currency pairs
-        fail("Test not implemented yet");
+        String[] currencies = {"USD", "EUR", "GBP", "AUD"};
+        double[] usdRates = {1.0, 0.85, 0.75, 1.30};
+        double amount = 100.0;
+
+        for (int from = 0; from < currencies.length; from++) {
+            for (int to = 0; to < currencies.length; to++) {
+                double expectedRate = usdRates[to] / usdRates[from];
+                double expectedAmount = amount * expectedRate;
+
+                assertEquals(
+                    expectedAmount,
+                    converter.convert(amount, currencies[from], currencies[to]),
+                    1e-12,
+                    currencies[from] + " to " + currencies[to]
+                );
+            }
+        }
+    }
+
+    @Test
+    public void testRoundToTwoDecimalsRoundsDown() {
+        assertEquals(1.23, converter.roundToTwoDecimals(1.234), 1e-9);
+    }
+
+    @Test
+    public void testRoundToTwoDecimalsRoundsHalfUp() {
+        assertEquals(1.01, converter.roundToTwoDecimals(1.005), 1e-9);
+        assertEquals(2.69, converter.roundToTwoDecimals(2.685), 1e-9);
+    }
+
+    @Test
+    public void testRoundToTwoDecimalsLeavesShortValues() {
+        assertEquals(67.0, converter.roundToTwoDecimals(67.0), 1e-9);
+        assertEquals(100.0, converter.roundToTwoDecimals(100), 1e-9);
     }
 }

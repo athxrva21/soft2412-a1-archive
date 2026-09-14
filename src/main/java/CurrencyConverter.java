@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Core currency conversion logic
  *
@@ -10,6 +13,13 @@
  */
 public class CurrencyConverter {
 
+    /** USD → EUR. Other pairs are derived from these three USD rates. */
+    private static final double USD_TO_EUR = 0.85;
+    /** USD → GBP */
+    private static final double USD_TO_GBP = 0.75;
+    /** USD → AUD */
+    private static final double USD_TO_AUD = 1.30;
+
     /**
      * Convert amount from one currency to another
      * @param amount amount to convert
@@ -18,13 +28,7 @@ public class CurrencyConverter {
      * @return converted amount
      */
     public double convert(double amount, String fromCurrency, String toCurrency) {
-        // TODO: Implement conversion logic
-        // Use hardcoded exchange rates:
-        // USD -> EUR: 0.85, USD -> GBP: 0.75, USD -> AUD: 1.30
-        // EUR -> USD: 1.18, GBP -> USD: 1.33, AUD -> USD: 0.77
-        // Calculate other rates as needed
-
-        return 0.0; // Replace with actual calculation
+        return amount * getExchangeRate(fromCurrency, toCurrency);
     }
 
     /**
@@ -62,8 +66,29 @@ public class CurrencyConverter {
      * @return exchange rate
      */
     public double getExchangeRate(String fromCurrency, String toCurrency) {
-        // TODO: Return exchange rate between currencies
-        return 0.0; // Replace with actual rate
+        if (fromCurrency.equals(toCurrency)) {
+            return 1.00;
+        }
+        return usdTo(toCurrency) / usdTo(fromCurrency);
+    }
+
+    /**
+     * Units of {@code currency} per 1 USD, using the three fixed USD rates.
+     * Unrounded: inverting a rounded rate would give the wrong pair rate.
+     */
+    private double usdTo(String currency) {
+        switch (currency) {
+            case "USD":
+                return 1.0;
+            case "EUR":
+                return USD_TO_EUR;
+            case "GBP":
+                return USD_TO_GBP;
+            case "AUD":
+                return USD_TO_AUD;
+            default:
+                return 0.0;
+        }
     }
 
     /**
@@ -72,7 +97,6 @@ public class CurrencyConverter {
      * @return rounded value
      */
     public double roundToTwoDecimals(double value) {
-        // TODO: Round the value to two decimal places
-        return 0.0; // Replace with actual rounding
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }

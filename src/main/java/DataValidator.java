@@ -11,8 +11,15 @@ public class DataValidator {
      * @return true if valid (USD/EUR/GBP/AUD)
      */
     public boolean isValidCurrency(String currency) {
-        // TODO: Validate currency is one of: USD, EUR, GBP, AUD
-        return false; // Replace with validation logic
+        if (currency == null) {
+            return false;
+        }
+
+        String normalizedCurrency = currency.trim();
+        return normalizedCurrency.equalsIgnoreCase("USD")
+            || normalizedCurrency.equalsIgnoreCase("EUR")
+            || normalizedCurrency.equalsIgnoreCase("GBP")
+            || normalizedCurrency.equalsIgnoreCase("AUD");
     }
 
     /**
@@ -21,18 +28,43 @@ public class DataValidator {
      * @return true if valid positive number
      */
     public boolean isValidAmount(String amountStr) {
-        // TODO: Check if string represents positive number
-        return false; // Replace with validation logic
+        return parseAmount(amountStr) > 0.0;
     }
 
     /**
-     * Parse amount string to double
-     * @param amountStr string to parse
-     * @return parsed amount or 0.0 if invalid
+     * Parse an amount string to a double, returning 0.0 rather than throwing
+     * when the string is not a usable amount.
+     *
+     * <p>Three inputs that {@link Double#parseDouble(String)} does not handle
+     * the way this method needs are dealt with explicitly:
+     *
+     * <ul>
+     *   <li>null, which makes {@code Double.parseDouble} throw a
+     *       {@link NullPointerException} rather than the
+     *       {@link NumberFormatException} the catch below is for;</li>
+     *   <li>surrounding whitespace, which a value typed at the menu can carry;</li>
+     *   <li>"NaN" and "Infinity", which parse successfully but are not amounts.
+     *       Returning one would carry it through the conversion and print it as
+     *       the result.</li>
+     * </ul>
+     *
+     * <p>Whether the amount is positive is not decided here --- that is
+     * {@link #isValidAmount(String)}'s job. This method only converts.
+     *
+     * @param amountStr string to parse, possibly null or malformed
+     * @return the parsed amount, or 0.0 if the string is not a usable number
      */
     public double parseAmount(String amountStr) {
-        // TODO: Safely parse string to double
-        return 0.0; // Replace with parsing logic
+        if (amountStr == null) {
+            return 0.0;
+        }
+
+        try {
+            double amount = Double.parseDouble(amountStr.trim());
+            return Double.isFinite(amount) ? amount : 0.0;
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
     }
 
     /**
@@ -41,7 +73,9 @@ public class DataValidator {
      * @return normalized currency code
      */
     public String normalizeCurrency(String currency) {
-        // TODO: Clean up currency input (trim, uppercase)
-        return currency; // Replace with normalization
+        if (currency == null) {
+            return null;
+        }
+        return currency.trim().toUpperCase();
     }
 }

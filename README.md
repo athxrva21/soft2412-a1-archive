@@ -4,12 +4,12 @@
 
 | Member | Unikey | Methods implemented |
 | --- | --- | --- |
-| | | |
-| | | |
-| | | |
-| | | |
+| 1 Zhengmou Luo | zluo8234 | `convert`, `start`, `isValidCurrency` |
+| 2 Xiaoyang Liu | xliu0704 | `getExchangeRate`, `showMenu`, `isValidAmount` |
+| 3 Atharva Aher | aahe0438 | `getSupportedCurrencies`, `handleConversion`, `parseAmount` |
+| 4 Aditya Mukherjee | amuk0434 | `roundToTwoDecimals`, `showExchangeRates`, `normalizeCurrency` |
 
-Integration-manager repository: <paste the URL here>
+Integration-manager repository: https://github.sydney.edu.au/SOFT2412-COMP9412-2026s2/A1-T05-60-IM.git
 
 ## Quick Start
 
@@ -33,8 +33,40 @@ make clean
 
 ## How the work was divided
 
-<!-- Which row of the Section 7.1 table each member took. -->
+Four members. Each takes one row of the handout table (three methods, three feature branches).
 
-## What I personally implemented
+| Cycle | Tag | Zhengmou | Xiaoyang | Atharva | Aditya |
+| --- | --- | --- | --- | --- | --- |
+| 1 | v0.2.0 | convert | getExchangeRate | getSupportedCurrencies | roundToTwoDecimals |
+| 2 | v0.3.0 | start (+ App.java) | showMenu | parseAmount | showExchangeRates |
+| 3 | v1.0.0 | isValidCurrency | isValidAmount | handleConversion | normalizeCurrency |
 
-<!-- Your own methods, and the merge commits you made. -->
+`parseAmount` was integrated in cycle 2 and `handleConversion` in cycle 3.
+
+## Contributions
+
+------------
+name: Zhengmou Luo
+unikey: zluo8234
+What I did:
+Implemented convert (CurrencyConverter), start plus the App entry point (UserInterface) and isValidCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: f2535ee (convert), ab1f244 (start) and 303c1b3 (isValidCurrency).
+
+------------
+name: Xiaoyang Liu
+unikey: xliu0704
+What I did:
+Implemented getExchangeRate (CurrencyConverter), showMenu (UserInterface) and isValidAmount (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: 1fc447e (getExchangeRate), 9f77c99 (showMenu) and 3757b8b (isValidAmount).
+
+------------
+name: Atharva Aher
+unikey: aahe0438
+What I did:
+Implemented getSupportedCurrencies (CurrencyConverter), handleConversion (UserInterface) and parseAmount (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: 6553ec3 (getSupportedCurrencies), 02d7929 (parseAmount) and 4ecef36 (handleConversion).
+
+------------
+name: Aditya Mukherjee
+unikey: amuk0434
+What I did:
+Implemented roundToTwoDecimals (CurrencyConverter), showExchangeRates (UserInterface) and normalizeCurrency (DataValidator), each on its own feature branch with unit tests and a CHANGELOG entry. Integration merge commits: 5b7b56f (roundToTwoDecimals), 8f85bdf (showExchangeRates) and a9ea2ee (normalizeCurrency).
+
+------------
